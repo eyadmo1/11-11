@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11/11 — Something Special</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  background: #080817;
+  color: white;
+  font-family: Georgia, serif;
+}
+
+#universe {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 45%, #34245f 0%, #17142f 35%, #080817 75%);
+  z-index: -3;
+}
+
+.nebula {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: .25;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.nebula.one {
+  background: #9b5cff;
+  top: -200px;
+  left: -150px;
+}
+
+.nebula.two {
+  background: #4b65d9;
+  bottom: -250px;
+  right: -150px;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: .2; transform: scale(.7); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+.screen {
+  min-height: 100vh;
+  width: 100%;
+  padding: 25px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: fadeIn 1.5s ease;
+}
+
+.screen.active {
+  display: flex;
+}
+
+.content {
+  max-width: 520px;
+  width: 100%;
+}
+
+.eyebrow {
+  font-family: Arial, sans-serif;
+  color: #b9a7ed;
+  letter-spacing: 6px;
+  font-size: 10px;
+  margin-bottom: 35px;
+}
+
+.date {
+  font-size: clamp(75px, 18vw, 125px);
+  font-weight: normal;
+  letter-spacing: -5px;
+  color: #fff;
+  text-shadow:
+    0 0 15px #c5a4ff,
+    0 0 45px #8d61e8,
+    0 0 90px #7650c9;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 15px #c5a4ff, 0 0 40px #8d61e8; }
+  to { text-shadow: 0 0 30px #fff, 0 0 80px #a67cff; }
+}
+
+.subtitle {
+  color: #c8c1df;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  line-height: 2;
+}
+
+.action {
+  margin-top: 45px;
+  padding: 15px 32px;
+  border: 1px solid #bca5f5;
+  border-radius: 50px;
+  color: white;
+  background: #ffffff0d;
+  letter-spacing: 3px;
+  font-size: 11px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: .4s;
+}
+
+.action:hover {
+  background: #a47be7;
+  box-shadow: 0 0 35px #a47be7aa;
+  transform: translateY(-3px);
+}
+
+.orb-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 35px 0;
+}
+
+.orb {
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #fff, #d5b8ff 15%, #7956bd 45%, #251a4c 75%);
+  box-shadow:
+    0 0 25px #bda0ff,
+    0 0 70px #8358d9,
+    inset -15px -15px 30px #100b2b;
+  animation: float 4s ease-in-out infinite;
+  position: relative;
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border: 1px solid #c9b4ff66;
+  border-radius: 50%;
+  animation: rotate 12s linear infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+.heading {
+  font-size: clamp(30px, 8vw, 43px);
+  font-weight: normal;
+  color: #f1eaff;
+  margin-bottom: 18px;
+}
+
+.description {
+  color: #c8c1df;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.message {
+  margin-top: 25px;
+  color: #e5dcff;
+  font-size: 17px;
+  line-height: 2.1;
+}
+
+.signature {
+  margin-top: 35px;
+  color: #bca5f5;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.music-control {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  z-index: 5;
+  border: 1px solid #bca5f577;
+  color: white;
+  background: #ffffff12;
+  padding: 10px 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 12px;
+  display: none;
+}
+
+.music-control.show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width: 400px) {
+  .date { letter-spacing: -3px; }
+  .description { font-size: 13px; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="universe"></div>
+<div class="nebula one"></div>
+<div class="nebula two"></div>
+<div id="stars"></div>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<button class="music-control" id="musicButton" onclick="toggleMusic()">
+  ♫ MUSIC ON
+</button>
+
+<!-- SCREEN ONE -->
+<section class="screen active" id="screen1">
+  <div class="content">
+    <p class="eyebrow">A MOMENT BEYOND ORDINARY</p>
+
+    <h1 class="date">11/11</h1>
+
+    <p class="subtitle">
+      Some moments are meant to feel different.
+      <br>
+      This one is just for you.
+    </p>
+
+    <button class="action" onclick="startExperience()">
+      ENTER THE MOMENT ✦
+    </button>
+  </div>
+</section>
+
+<!-- SCREEN TWO -->
+<section class="screen" id="screen2">
+  <div class="content">
+    <p class="eyebrow">CLOSE YOUR EYES FOR A SECOND</p>
+
+    <div class="orb-wrap">
+      <div class="orb"></div>
+    </div>
+
+    <h2 class="heading">Make a wish, Nonii.</h2>
+
+    <p class="description">
+      Think of something your heart truly wants.
+      <br>
+      Keep it safe, just between you and the universe.
+    </p>
+
+    <button class="action" onclick="makeWish()">
+      MY WISH IS MADE ✧
+    </button>
+  </div>
+</section>
+
+<!-- SCREEN THREE -->
+<section class="screen" id="screen3">
+  <div class="content">
+    <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+
+    <h2 class="heading">Dear Nonii,</h2>
+
+    <p class="message">
+      Maybe 11:11 is just a time on a clock,
+      but today I wanted to make it a little more special.
+      <br><br>
+      I hope life surprises you with beautiful things,
+      gives you reasons to smile,
+      and brings you closer to every dream you have.
+      <br><br>
+      And if I could wish for one thing today,
+      it would be that you always find happiness
+      in the little moments.
+      <br><br>
+      Some moments are simple.
+      Some become memories.
+      And some are special just because of you.
+    </p>
+
+    <p class="signature">A MOMENT FOR YOU ♡</p>
+  </div>
+</section>
+
+<script>
+// Create the stars
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 140; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.animationDelay = Math.random() * 4 + "s";
+  star.style.animationDuration = (2 + Math.random() * 4) + "s";
+  stars.appendChild(star);
+}
+
+// Screen transitions
+function showScreen(number) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById("screen" + number).classList.add("active");
+}
+
+async function startExperience() {
+  const music = document.getElementById("music");
+
+  music.volume = 0.45;
+  music.play().catch(() => {});
+
+  document.getElementById("musicButton").classList.add("show");
+  showScreen(2);
+}
+
+function makeWish() {
+  showScreen(3);
+}
+
+function toggleMusic() {
+  const music = document.getElementById("music");
+  const button = document.getElementById("musicButton");
+
+  if (music.paused) {
+    music.play();
+    button.textContent = "♫ MUSIC ON";
+  } else {
+    music.pause();
+    button.textContent = "♫ MUSIC OFF";
+  }
+}
+</script>
+
+</body>
+</html>

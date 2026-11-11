@@ -144,18 +144,64 @@ button:active {
   50% { transform: scale(1.25); }
 }
 
+/* LONG LETTER */
+
+#screen3 {
+  overflow-y: auto;
+  justify-content: flex-start;
+  padding: 55px 22px 45px;
+  scrollbar-width: thin;
+  scrollbar-color: #b66be4 transparent;
+}
+
+#screen3 .heading {
+  margin-bottom: 25px;
+  flex-shrink: 0;
+}
+
+.letter {
+  width: 100%;
+  max-width: 600px;
+  padding: 28px 24px;
+  border: 1px solid #dba9f455;
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(112, 65, 145, .23),
+    rgba(34, 22, 61, .65)
+  );
+  box-shadow: 0 0 35px #a64dc422;
+}
+
 .message {
-  max-width: 550px;
   color: #f4e6ff;
-  font-size: 19px;
-  line-height: 2;
-  letter-spacing: .5px;
+  font-size: 17px;
+  line-height: 1.9;
+  letter-spacing: .3px;
+  text-align: center;
+}
+
+.message .opening {
+  color: #ffc4ef;
+  font-size: 21px;
+  margin-bottom: 22px;
+  font-style: italic;
+}
+
+.message p {
+  margin-bottom: 20px;
+}
+
+.message .ending {
+  color: #ffc4ef;
+  font-style: italic;
 }
 
 .signature {
   margin-top: 30px;
+  padding-bottom: 10px;
   color: #ffbde9;
-  font-size: 23px;
+  font-size: 24px;
   font-style: italic;
   text-shadow: 0 0 15px #e879dc;
 }
@@ -193,10 +239,17 @@ button:active {
 }
 
 @media (max-width: 480px) {
-  .message { font-size: 17px; }
+  .message { font-size: 15px; }
+  .message .opening { font-size: 19px; }
   .heading {
     font-size: 14px;
     letter-spacing: 5px;
+  }
+  .letter {
+    padding: 23px 18px;
+  }
+  #screen3 {
+    padding: 55px 15px 35px;
   }
 }
 </style>
@@ -233,21 +286,63 @@ button:active {
 </section>
 
 <section class="screen" id="screen3">
+
   <div class="heading">JUST A LITTLE REMINDER</div>
 
-  <div class="message">
-    Some people make ordinary days feel special.
-    <br><br>
-    And somehow, you became one of the most beautiful parts of my days.
-    <br><br>
-    I hope this little moment reminds you how special you are.
-    <br><br>
-    Happy 11/11, Nonii.
-    <br>
-    Here's to more beautiful moments together. ♡
+  <div class="letter">
+
+    <div class="message">
+
+      <div class="opening">
+        To my favorite person, Nonii ❤️
+      </div>
+
+      <p>
+        I don't even know where to start, but I just want you to know how much you mean to me.
+        I'm genuinely grateful that you're in my life, and I hope you always know how special you are to me.
+      </p>
+
+      <p>
+        I wish you a life full of happiness, success, love, and beautiful moments.
+        I hope every dream you have comes true, every goal you work for gets closer,
+        and every day brings you something that makes you smile.
+        I wish you peace whenever life gets difficult, strength whenever you feel tired,
+        and endless reasons to be happy.
+      </p>
+
+      <p>
+        I hope you never doubt yourself, because you deserve every beautiful thing this life has to offer.
+        I hope you always see yourself the way I see you,
+        someone truly special and one of a kind.
+      </p>
+
+      <p>
+        I wish I could be there for every little achievement, every happy moment,
+        every random story, and even the ordinary days.
+        I want to see you grow, succeed, achieve everything you've ever wanted,
+        and be proud of yourself.
+      </p>
+
+      <p>
+        And more than anything, I hope I can always be someone who makes your days a little better,
+        someone you can count on, someone who makes you smile even when you don't feel like smiling.
+      </p>
+
+      <p>
+        You deserve the whole world, Nonii.
+        And if I could wish for one thing, it would be that life is always kind to you.
+      </p>
+
+      <p class="ending">
+        Happy 11/11, my favorite person. ❤️
+      </p>
+
+    </div>
+
   </div>
 
   <div class="signature">With love, Eyad ♡</div>
+
 </section>
 
 <script>
@@ -272,6 +367,8 @@ function startExperience() {
 function showMessage() {
   document.getElementById("screen2").classList.remove("active");
   document.getElementById("screen3").classList.add("active");
+
+  document.getElementById("screen3").scrollTop = 0;
 }
 
 function toggleMusic() {
@@ -284,7 +381,7 @@ function toggleMusic() {
       musicPlaying = true;
       musicBtn.textContent = "♫ MUSIC ON";
     }).catch(() => {
-      musicBtn.textContent = "♫ TRY AGAIN";
+      musicBtn.textContent = "♫ TAP TO PLAY";
     });
   }
 }

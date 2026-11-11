@@ -211,7 +211,7 @@ button:active {
 </audio>
 
 <button class="music-control" id="musicBtn" onclick="toggleMusic()">
-  ♫ MUSIC OFF
+  ♫ MUSIC ON
 </button>
 
 <section class="screen active" id="screen1">
@@ -265,7 +265,7 @@ function startExperience() {
     musicBtn.textContent = "♫ MUSIC ON";
   }).catch(() => {
     musicPlaying = false;
-    musicBtn.textContent = "♫ MUSIC OFF";
+    musicBtn.textContent = "♫ TAP TO PLAY";
   });
 }
 

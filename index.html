@@ -17,8 +17,7 @@ body {
   min-height: 100vh;
   overflow: hidden;
   font-family: Georgia, serif;
-  background:
-    radial-gradient(ellipse at 50% 40%, #302052 0%, #17132e 45%, #080817 100%);
+  background: radial-gradient(ellipse at 50% 40%, #302052 0%, #17132e 45%, #080817 100%);
   color: white;
 }
 
@@ -75,10 +74,7 @@ body {
   font-size: clamp(75px, 18vw, 125px);
   font-weight: bold;
   color: #fff0fc;
-  text-shadow:
-    0 0 15px #ffb6e6,
-    0 0 45px #c16be8,
-    0 0 90px #7650c9;
+  text-shadow: 0 0 15px #ffb6e6, 0 0 45px #c16be8, 0 0 90px #7650c9;
   animation: glow 3s infinite alternate;
 }
 
@@ -127,10 +123,7 @@ button:active {
   height: 145px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #f8d9ff, #b66be4 35%, #542c88 75%);
-  box-shadow:
-    0 0 25px #e2a5ff,
-    0 0 65px #a65ad9,
-    inset -15px -15px 35px #2c164f;
+  box-shadow: 0 0 25px #e2a5ff, 0 0 65px #a65ad9, inset -15px -15px 35px #2c164f;
   animation: float 3s ease-in-out infinite;
 }
 
@@ -177,7 +170,6 @@ button:active {
   font-size: 11px;
 }
 
-/* Floating romantic hearts */
 .floating-heart {
   position: fixed;
   bottom: -40px;
@@ -201,10 +193,7 @@ button:active {
 }
 
 @media (max-width: 480px) {
-  .message {
-    font-size: 17px;
-  }
-
+  .message { font-size: 17px; }
   .heading {
     font-size: 14px;
     letter-spacing: 5px;
@@ -218,14 +207,13 @@ button:active {
 <div class="stars"></div>
 
 <audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
+  <source src="music.m4a" type="audio/mp4">
 </audio>
 
 <button class="music-control" id="musicBtn" onclick="toggleMusic()">
   ♫ MUSIC OFF
 </button>
 
-<!-- SCREEN 1 -->
 <section class="screen active" id="screen1">
   <div class="heading">A MOMENT JUST FOR YOU</div>
   <div class="date">11/11</div>
@@ -233,7 +221,6 @@ button:active {
   <button onclick="startExperience()">ENTER THE MOMENT ✦</button>
 </section>
 
-<!-- SCREEN 2 -->
 <section class="screen" id="screen2">
   <div class="heading">A LITTLE MAGIC FOR YOU</div>
 
@@ -245,7 +232,6 @@ button:active {
   <button onclick="showMessage()">MY WISH IS MADE ✨</button>
 </section>
 
-<!-- SCREEN 3 -->
 <section class="screen" id="screen3">
   <div class="heading">JUST A LITTLE REMINDER</div>
 
@@ -279,6 +265,7 @@ function startExperience() {
     musicBtn.textContent = "♫ MUSIC ON";
   }).catch(() => {
     musicPlaying = false;
+    musicBtn.textContent = "♫ MUSIC OFF";
   });
 }
 
@@ -302,7 +289,6 @@ function toggleMusic() {
   }
 }
 
-// Floating hearts animation
 function createHeart() {
   const heart = document.createElement("div");
 

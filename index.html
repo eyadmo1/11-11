@@ -16,365 +16,311 @@
 body {
   min-height: 100vh;
   overflow: hidden;
-  background: #080817;
-  color: white;
   font-family: Georgia, serif;
-}
-
-#universe {
-  position: fixed;
-  inset: 0;
   background:
-    radial-gradient(ellipse at 50% 45%, #34245f 0%, #17142f 35%, #080817 75%);
-  z-index: -3;
+    radial-gradient(ellipse at 50% 40%, #302052 0%, #17132e 45%, #080817 100%);
+  color: white;
 }
 
-.nebula {
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: .25;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.nebula.one {
-  background: #9b5cff;
-  top: -200px;
-  left: -150px;
-}
-
-.nebula.two {
-  background: #4b65d9;
-  bottom: -250px;
-  right: -150px;
-}
-
-#stars {
+.stars {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: -1;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white 50%, transparent),
+    radial-gradient(1px 1px at 70% 20%, white 50%, transparent),
+    radial-gradient(2px 2px at 80% 70%, #e8caff 50%, transparent),
+    radial-gradient(1px 1px at 40% 80%, white 50%, transparent),
+    radial-gradient(2px 2px at 10% 75%, #ffb6e6 50%, transparent);
+  background-size: 250px 250px;
+  animation: starsMove 20s linear infinite;
 }
 
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 3s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: .2; transform: scale(.7); }
-  50% { opacity: 1; transform: scale(1.5); }
+@keyframes starsMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-250px); }
 }
 
 .screen {
-  min-height: 100vh;
-  width: 100%;
-  padding: 25px;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   display: none;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
-  animation: fadeIn 1.5s ease;
+  padding: 25px;
+  animation: appear 1.2s ease;
 }
 
 .screen.active {
   display: flex;
 }
 
-.content {
-  max-width: 520px;
-  width: 100%;
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.eyebrow {
-  font-family: Arial, sans-serif;
-  color: #b9a7ed;
-  letter-spacing: 6px;
-  font-size: 10px;
-  margin-bottom: 35px;
+.heading {
+  color: #f3d8ff;
+  font-size: 18px;
+  letter-spacing: 7px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px #d879df;
 }
 
 .date {
   font-size: clamp(75px, 18vw, 125px);
-  font-weight: normal;
-  letter-spacing: -5px;
-  color: #fff;
+  font-weight: bold;
+  color: #fff0fc;
   text-shadow:
-    0 0 15px #c5a4ff,
-    0 0 45px #8d61e8,
+    0 0 15px #ffb6e6,
+    0 0 45px #c16be8,
     0 0 90px #7650c9;
   animation: glow 3s infinite alternate;
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 15px #c5a4ff, 0 0 40px #8d61e8; }
-  to { text-shadow: 0 0 30px #fff, 0 0 80px #a67cff; }
+  from { opacity: .8; }
+  to { opacity: 1; text-shadow: 0 0 30px #ffb6e6, 0 0 80px #b76bea; }
 }
 
 .subtitle {
-  color: #c8c1df;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+  color: #d8c6e9;
+  font-size: 17px;
   letter-spacing: 2px;
-  margin-top: 20px;
-  line-height: 2;
+  margin-top: 25px;
 }
 
-.action {
+button {
   margin-top: 45px;
-  padding: 15px 32px;
-  border: 1px solid #bca5f5;
-  border-radius: 50px;
+  padding: 15px 35px;
+  border: 1px solid #e7b8f6;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #7746a5, #b45a9f);
   color: white;
-  background: #ffffff0d;
-  letter-spacing: 3px;
-  font-size: 11px;
+  letter-spacing: 2px;
+  font-size: 12px;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: .4s;
+  box-shadow: 0 0 25px #a64dc477;
+  transition: .3s;
 }
 
-.action:hover {
-  background: #a47be7;
-  box-shadow: 0 0 35px #a47be7aa;
-  transform: translateY(-3px);
+button:active {
+  transform: scale(.95);
 }
 
 .orb-wrap {
+  position: relative;
+  width: 190px;
+  height: 190px;
   display: flex;
   justify-content: center;
-  margin: 35px 0;
+  align-items: center;
+  margin-bottom: 35px;
 }
 
 .orb {
   width: 145px;
   height: 145px;
   border-radius: 50%;
-  background:
-    radial-gradient(circle at 35% 30%, #fff, #d5b8ff 15%, #7956bd 45%, #251a4c 75%);
+  background: radial-gradient(circle at 35% 30%, #f8d9ff, #b66be4 35%, #542c88 75%);
   box-shadow:
-    0 0 25px #bda0ff,
-    0 0 70px #8358d9,
-    inset -15px -15px 30px #100b2b;
-  animation: float 4s ease-in-out infinite;
-  position: relative;
-}
-
-.orb::after {
-  content: "";
-  position: absolute;
-  inset: -18px;
-  border: 1px solid #c9b4ff66;
-  border-radius: 50%;
-  animation: rotate 12s linear infinite;
+    0 0 25px #e2a5ff,
+    0 0 65px #a65ad9,
+    inset -15px -15px 35px #2c164f;
+  animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-12px) scale(1.04); }
 }
 
-@keyframes rotate {
-  to { transform: rotate(360deg); }
+.orb-wrap::after {
+  content: "♡";
+  position: absolute;
+  font-size: 35px;
+  color: #ffc4ef;
+  text-shadow: 0 0 20px #ff8de0;
+  animation: heartbeat 1.5s infinite;
 }
 
-.heading {
-  font-size: clamp(30px, 8vw, 43px);
-  font-weight: normal;
-  color: #f1eaff;
-  margin-bottom: 18px;
-}
-
-.description {
-  color: #c8c1df;
-  font-family: Arial, sans-serif;
-  font-size: 15px;
-  line-height: 2;
+@keyframes heartbeat {
+  50% { transform: scale(1.25); }
 }
 
 .message {
-  margin-top: 25px;
-  color: #e5dcff;
-  font-size: 17px;
-  line-height: 2.1;
+  max-width: 550px;
+  color: #f4e6ff;
+  font-size: 19px;
+  line-height: 2;
+  letter-spacing: .5px;
 }
 
 .signature {
-  margin-top: 35px;
-  color: #bca5f5;
-  font-size: 13px;
-  letter-spacing: 3px;
+  margin-top: 30px;
+  color: #ffbde9;
+  font-size: 23px;
+  font-style: italic;
+  text-shadow: 0 0 15px #e879dc;
 }
 
 .music-control {
   position: fixed;
-  top: 22px;
-  right: 22px;
   z-index: 5;
-  border: 1px solid #bca5f577;
-  color: white;
-  background: #ffffff12;
-  padding: 10px 14px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 12px;
-  display: none;
+  right: 18px;
+  bottom: 18px;
+  margin: 0;
+  padding: 12px 18px;
+  font-size: 11px;
 }
 
-.music-control.show {
-  display: block;
+/* Floating romantic hearts */
+.floating-heart {
+  position: fixed;
+  bottom: -40px;
+  color: #ffb6e6;
+  text-shadow: 0 0 15px #e879dc;
+  pointer-events: none;
+  z-index: 1;
+  animation: heartRise linear forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes heartRise {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(.7);
+    opacity: 0;
+  }
+  15% { opacity: .85; }
+  100% {
+    transform: translateY(-110vh) rotate(360deg) scale(1.3);
+    opacity: 0;
+  }
 }
 
-@media(max-width: 400px) {
-  .date { letter-spacing: -3px; }
-  .description { font-size: 13px; }
+@media (max-width: 480px) {
+  .message {
+    font-size: 17px;
+  }
+
+  .heading {
+    font-size: 14px;
+    letter-spacing: 5px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div id="universe"></div>
-<div class="nebula one"></div>
-<div class="nebula two"></div>
-<div id="stars"></div>
+<div class="stars"></div>
 
-<audio id="music" src="music.mp3" loop></audio>
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-<button class="music-control" id="musicButton" onclick="toggleMusic()">
-  ♫ MUSIC ON
+<button class="music-control" id="musicBtn" onclick="toggleMusic()">
+  ♫ MUSIC OFF
 </button>
 
-<!-- SCREEN ONE -->
+<!-- SCREEN 1 -->
 <section class="screen active" id="screen1">
-  <div class="content">
-    <p class="eyebrow">A MOMENT BEYOND ORDINARY</p>
-
-    <h1 class="date">11/11</h1>
-
-    <p class="subtitle">
-      Some moments are meant to feel different.
-      <br>
-      This one is just for you.
-    </p>
-
-    <button class="action" onclick="startExperience()">
-      ENTER THE MOMENT ✦
-    </button>
-  </div>
+  <div class="heading">A MOMENT JUST FOR YOU</div>
+  <div class="date">11/11</div>
+  <div class="subtitle">Some moments are meant to be special ♡</div>
+  <button onclick="startExperience()">ENTER THE MOMENT ✦</button>
 </section>
 
-<!-- SCREEN TWO -->
+<!-- SCREEN 2 -->
 <section class="screen" id="screen2">
-  <div class="content">
-    <p class="eyebrow">CLOSE YOUR EYES FOR A SECOND</p>
+  <div class="heading">A LITTLE MAGIC FOR YOU</div>
 
-    <div class="orb-wrap">
-      <div class="orb"></div>
-    </div>
-
-    <h2 class="heading">Make a wish, Nonii.</h2>
-
-    <p class="description">
-      Think of something your heart truly wants.
-      <br>
-      Keep it safe, just between you and the universe.
-    </p>
-
-    <button class="action" onclick="makeWish()">
-      MY WISH IS MADE ✧
-    </button>
+  <div class="orb-wrap">
+    <div class="orb"></div>
   </div>
+
+  <div class="subtitle">Make a wish, Nonii ♡</div>
+  <button onclick="showMessage()">MY WISH IS MADE ✨</button>
 </section>
 
-<!-- SCREEN THREE -->
+<!-- SCREEN 3 -->
 <section class="screen" id="screen3">
-  <div class="content">
-    <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
+  <div class="heading">JUST A LITTLE REMINDER</div>
 
-    <h2 class="heading">Dear Nonii,</h2>
-
-    <p class="message">
-      Maybe 11:11 is just a time on a clock,
-      but today I wanted to make it a little more special.
-      <br><br>
-      I hope life surprises you with beautiful things,
-      gives you reasons to smile,
-      and brings you closer to every dream you have.
-      <br><br>
-      And if I could wish for one thing today,
-      it would be that you always find happiness
-      in the little moments.
-      <br><br>
-      Some moments are simple.
-      Some become memories.
-      And some are special just because of you.
-    </p>
-
-    <p class="signature">A MOMENT FOR YOU ♡</p>
+  <div class="message">
+    Some people make ordinary days feel special.
+    <br><br>
+    And somehow, you became one of the most beautiful parts of my days.
+    <br><br>
+    I hope this little moment reminds you how special you are.
+    <br><br>
+    Happy 11/11, Nonii.
+    <br>
+    Here's to more beautiful moments together. ♡
   </div>
+
+  <div class="signature">With love, Eyad ♡</div>
 </section>
 
 <script>
-// Create the stars
-const stars = document.getElementById("stars");
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
 
-for (let i = 0; i < 140; i++) {
-  const star = document.createElement("span");
-  star.className = "star";
-  star.style.left = Math.random() * 100 + "%";
-  star.style.top = Math.random() * 100 + "%";
-  star.style.animationDelay = Math.random() * 4 + "s";
-  star.style.animationDuration = (2 + Math.random() * 4) + "s";
-  stars.appendChild(star);
-}
+let musicPlaying = false;
 
-// Screen transitions
-function showScreen(number) {
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.remove("active");
+function startExperience() {
+  document.getElementById("screen1").classList.remove("active");
+  document.getElementById("screen2").classList.add("active");
+
+  music.play().then(() => {
+    musicPlaying = true;
+    musicBtn.textContent = "♫ MUSIC ON";
+  }).catch(() => {
+    musicPlaying = false;
   });
-
-  document.getElementById("screen" + number).classList.add("active");
 }
 
-async function startExperience() {
-  const music = document.getElementById("music");
-
-  music.volume = 0.45;
-  music.play().catch(() => {});
-
-  document.getElementById("musicButton").classList.add("show");
-  showScreen(2);
-}
-
-function makeWish() {
-  showScreen(3);
+function showMessage() {
+  document.getElementById("screen2").classList.remove("active");
+  document.getElementById("screen3").classList.add("active");
 }
 
 function toggleMusic() {
-  const music = document.getElementById("music");
-  const button = document.getElementById("musicButton");
-
-  if (music.paused) {
-    music.play();
-    button.textContent = "♫ MUSIC ON";
-  } else {
+  if (musicPlaying) {
     music.pause();
-    button.textContent = "♫ MUSIC OFF";
+    musicPlaying = false;
+    musicBtn.textContent = "♫ MUSIC OFF";
+  } else {
+    music.play().then(() => {
+      musicPlaying = true;
+      musicBtn.textContent = "♫ MUSIC ON";
+    }).catch(() => {
+      musicBtn.textContent = "♫ TRY AGAIN";
+    });
   }
 }
+
+// Floating hearts animation
+function createHeart() {
+  const heart = document.createElement("div");
+
+  heart.className = "floating-heart";
+  heart.textContent = ["♡", "♥", "💗", "💕", "💜"][
+    Math.floor(Math.random() * 5)
+  ];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 22) + "px";
+  heart.style.animationDuration = (6 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 12000);
+}
+
+setInterval(createHeart, 450);
 </script>
 
 </body>
